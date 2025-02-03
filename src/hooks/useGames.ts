@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
+import useData from "./useData";
+import { Genre } from "./useGenre";
 
 export interface Platform {
   id: number;
@@ -16,36 +18,46 @@ export interface Game {
   metacritic: number;
 }
 
-interface FetchGameResponse {
-  count: number;
-  results: Game[];
-}
+const useGames = (selectedGenre: Genre | null) =>
+  useData<Game>(
+    "https://api.rawg.io/api/games?key=894f747d6f334185a9fcb4d4365e2921",
+    { params: { genres: selectedGenre?.id } },
+    [selectedGenre?.id]
+  );
 
-const useGames = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-  const [loading, setLoding] = useState(false);
+// interface FetchGameResponse {
+//   count: number;
+//   results: Game[];
+// }
 
-  useEffect(() => {
-    const controller = new AbortController();
+// const useGames = () => {
+//   const [games, setGames] = useState<Game[]>([]);
+//   const [error, setError] = useState("");
+//   const [loading, setLoding] = useState(false);
 
-    setLoding(true);
-    apiClient
-      .get<FetchGameResponse>("/games", { signal: controller.signal })
-      .then((res) => {
-        setGames(res.data.results);
-        setLoding(false);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setError(err.message);
-        setLoding(false);
-      });
+//   useEffect(() => {
+//     const controller = new AbortController();
 
-    return () => controller.abort();
-  }, []);
+//     setLoding(true);
+//     apiClient
+//       .get<FetchGameResponse>(
+//         "https://api.rawg.io/api/games?key=894f747d6f334185a9fcb4d4365e2921",
+//         { signal: controller.signal }
+//       )
+//       .then((res) => {
+//         setGames(res.data.results);
+//         setLoding(false);
+//       })
+//       .catch((err) => {
+//         if (err instanceof CanceledError) return;
+//         setError(err.message);
+//         setLoding(false);
+//       });
 
-  return { error, games, loading };
-};
+//     return () => controller.abort();
+//   }, []);
+
+//   return { error, games, loading };
+// };
 
 export default useGames;

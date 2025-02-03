@@ -1,4 +1,5 @@
 import {
+  Box,
   Card,
   CardBody,
   Heading,
@@ -15,21 +16,17 @@ interface Props {
 }
 
 const GameCard = ({ game }: Props) => {
-  console.log("game:", game);
   const { colorMode } = useColorMode();
   return (
     <>
-      <Card
-        width={"200px"}
-        bg={colorMode === "dark" ? "blackAlpha.900" : "#D9D9D9"}
-        overflow={"hidden"}
-      >
+      <Card>
         <Image src={game.background_image} />
         <CardBody
-          height={"180px"}
+          sx={{ boxShadow: "none" }}
+          bg={colorMode === "dark" ? "#171923" : "#D9D9D9"}
           color={colorMode === "dark" ? "#C5C5C5" : "#0E0F15"}
         >
-          <Heading fontSize={"xl"}>{game.name}</Heading>
+          <Heading fontSize={"l"}>{game.name}</Heading>
           <HStack justifyContent="space-between">
             <PlatformIconList
               platforms={game.parent_platforms.map((p) => p.platform)}
