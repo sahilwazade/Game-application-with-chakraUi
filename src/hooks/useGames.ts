@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
-import { CanceledError } from "axios";
 import useData from "./useData";
-import { Genre } from "./useGenre";
+import { GameQuery } from "../App";
 
 export interface Platform {
   id: number;
@@ -18,12 +15,23 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = (selectedGenre: Genre | null) =>
+const useGames = (gameQuery: GameQuery) =>
   useData<Game>(
     "https://api.rawg.io/api/games?key=894f747d6f334185a9fcb4d4365e2921",
-    { params: { genres: selectedGenre?.id } },
-    [selectedGenre?.id]
+    {
+      params: {
+        genres: gameQuery.genre?.id,
+        parent_platforms: gameQuery.platform?.id,
+        ordering: gameQuery.sortOrder,
+        search: gameQuery.searchText,
+      },
+    },
+    [gameQuery]
   );
+
+// selectedGenre: Genre | null
+// { params: { genres: selectedGenre?.id } },
+//   [selectedGenre?.id]
 
 // interface FetchGameResponse {
 //   count: number;

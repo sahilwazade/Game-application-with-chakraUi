@@ -11,6 +11,7 @@ const ColorModeSwitch = () => {
           onClick={toggleColorMode}
           variant="link"
           border="none"
+          fontSize="20px"
         >
           {colorMode === "dark" ? <LuSun /> : <LuMoon />}
         </Button>
