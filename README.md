@@ -1,50 +1,45 @@
-# React + TypeScript + Vite
+# Game Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Game Explorer is a React + TypeScript application that provides a smooth, modern, and responsive UI to explore games effortlessly. With dark mode support, powerful filtering, and a well-optimized fetching system, this project demonstrates strong front-end development skills using React best practices.
 
-Currently, two official plugins are available:
+Application Preview: https://games-application.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+✅ Responsive Design: Fully optimized for different screen sizes and devices.
 
-- Configure the top-level `parserOptions` property like this:
+✅ Dark Mode Support: Includes a sleek dark mode with a toggle switch.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+✅ Efficient Data Fetching: Implemented a custom hook for fetching games and other API data.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+✅ Reusable Components: Built modular and reusable UI components, including:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+  -- 🎴 Game Card
+  
+  -- ⭐ Critic Score Badge
+  
+  -- 🎮 Platform Icons
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+✅ Loading Skeletons: Smooth skeleton UI for better UX while data loads.
+
+✅ Advanced Filtering: Users can filter games:
+
+  -- By Genre
+  
+  -- By Platform
+
+✅ Advanced Searching: Users can search games.
+
+✅ Sorting Functionality: Users can sort games based on different criteria.
+
+## 🛠️ Technologies Used
+
+React.js
+
+TypeScript
+
+ChakraUi
+
+Axios for API integration
+
